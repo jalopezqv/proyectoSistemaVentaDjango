@@ -1,4 +1,4 @@
-from base import *
+from .base import *
 
 # Application definition
 
@@ -35,11 +35,11 @@ MIDDLEWARE = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bdsistemaventa',
-        'USER':'userSistemaVenta',
-        'PASSWORD':'userSistemaVenta123',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': get_secret("NOMBREBD"),
+        'USER': get_secret("USUARIOBD"),
+        'PASSWORD': get_secret("PASSBD"),
+        'HOST': get_secret("HOST"),
+        'PORT': get_secret("PORT"),
     }
 }
 

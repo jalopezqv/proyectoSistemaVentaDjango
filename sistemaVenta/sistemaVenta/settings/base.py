@@ -10,17 +10,31 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import json
+
 from unipath import Path
+from django.core.exceptions import ImproperlyConfigured
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).ancestor(3)
+
+
+with open(BASE_DIR.child('secret.json')) as file:
+    data = json.load(file)   
+
+def get_secret(setting, secrets=data):
+    """Obtiene la configuracion de la llave pasada por parametro"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("No se encontro el valor {}".format(setting))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-p30yi(5wr--gbdfjp#i@&_+n%b@yrmyqh-0w^l2#88kuw#)sy&'
+SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
