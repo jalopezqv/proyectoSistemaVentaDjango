@@ -1,0 +1,6 @@
+# Se excluye el archivo de configuracion original, esto con el fin de usar una carpeta mas organizada, la cual tiene en cuenta los diferentes
+# ambientes.
+settingsOriginal.py
+
+# Se excluye la carpeta de cache
+__pycache__
