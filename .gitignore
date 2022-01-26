@@ -4,3 +4,12 @@ settingsOriginal.py
 
 # Se excluye la carpeta de cache
 __pycache__
+
+# Se excluye el archivo con informacion sensible
+secret.json
+
+# Se excluye el archivo con informacion sensible
+db.sqlite3
+
+# Se excluyen los .png
+*.png

@@ -1,0 +1,45 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Productos{% endblock %}
+
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col">
+        <h1>Lista de productos en stock</h1>
+    </div>
+    
+    <div class="col col-lg-2">
+        <a class="btn btn-secondary btn-lg" href="{% url 'productos_app:crear-producto-page' %}" role="button">Agregar Producto</a>
+    </div>
+</div>
+
+<br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">nombre</th>
+            <th scope="col">precio</th>
+            <th scope="col">cantidad</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.cantidad }}</td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

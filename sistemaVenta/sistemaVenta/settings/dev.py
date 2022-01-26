@@ -13,6 +13,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'applications.home',
+    'applications.productos',
 ]
 
 THIRD_PARTY_APPS = []
@@ -34,12 +35,8 @@ MIDDLEWARE = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_secret("NOMBREBD"),
-        'USER': get_secret("USUARIOBD"),
-        'PASSWORD': get_secret("PASSBD"),
-        'HOST': get_secret("HOST"),
-        'PORT': get_secret("PORT"),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR.child('db.sqlite3'),
     }
 }
 
@@ -48,3 +45,5 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [BASE_DIR.child('static')]
