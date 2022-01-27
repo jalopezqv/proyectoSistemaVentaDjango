@@ -6,21 +6,27 @@
 {% block content %}
 
 <h1>Formulario creacion producto</h1>
-<form>
+
+<br>
+
+<form method='POST'>
     {% csrf_token %}
+
     <div class="mb-3">
-        <label for="nombre_producto" class="form-label">nombre</label>
-        <input type="text" class="form-control">
+        {{ form.nombre }}
     </div>
+
     <div class="mb-3">
-        <label for="precio_producto" class="form-label">precio</label>
-        <input type="text" class="form-control">
+        {{ form.precio }}
     </div>
+
     <div class="mb-3">
-        <label for="cantidad_producto" class="form-label">cantidad</label>
-        <input type="text" class="form-control">
+        {{ form.cantidad }}
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-secondary">Agregar</button>
+    </div>
 </form>
 
   
