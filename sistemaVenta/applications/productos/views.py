@@ -1,6 +1,6 @@
 
 from django.http        import Http404
-from django.shortcuts   import render
+from django.shortcuts   import redirect, render
 
 from django.views.generic import TemplateView
 
@@ -39,7 +39,13 @@ class CrearProducto(TemplateView):
         except Exception :
             raise Http404('Error al consumir el microservicio de productos')
         
-        return render(request, 'productos/consultar-productos.html',{'productos':productos})
+        return redirect('productos_app:consultar-productos-page')
 
 
-
+def inhabilitar_producto(request, id):
+    try:
+        inhabilitar_producto_ms(id)
+    except Exception :
+        raise Http404('Error al consumir el microservicio de productos')
+    
+    return redirect('productos_app:consultar-productos-page')
