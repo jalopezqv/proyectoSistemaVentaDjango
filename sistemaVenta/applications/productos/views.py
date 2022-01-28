@@ -4,7 +4,7 @@ from django.shortcuts   import redirect, render
 
 from django.views.generic import TemplateView
 
-from .forms    import CrearProductoForm
+from .forms    import CrearProductoForm, ActualizarProductoForm
 from .services import *
 
 # Create your views here.
@@ -35,17 +35,37 @@ class CrearProducto(TemplateView):
 
         try:
             crear_producto_ms(json_parametro)
-            productos = consultar_productos_ms()
         except Exception :
             raise Http404('Error al consumir el microservicio de productos')
         
         return redirect('productos_app:consultar-productos-page')
 
 
-def inhabilitar_producto(request, id):
+def inhabilitar_producto(id):
     try:
         inhabilitar_producto_ms(id)
     except Exception :
         raise Http404('Error al consumir el microservicio de productos')
     
     return redirect('productos_app:consultar-productos-page')
+
+
+def actualiza_producto(request, id):
+    if request.method == 'GET':
+        form = ActualizarProductoForm()
+    else:
+        form = ActualizarProductoForm(request.POST)
+        if form.is_valid():
+            nombre   = request.POST.get('nombre')
+            precio   = float(request.POST.get('precio'))
+            cantidad = int(request.POST.get('cantidad'))
+
+            json_parametro = {'nombre':nombre, 'precio':precio, 'cantidad':cantidad}
+
+            try:
+                actualizar_producto_ms(json_parametro,id)
+            except Exception :
+                raise Http404('Error al consumir el microservicio de productos')
+            return redirect('productos_app:consultar-productos-page')
+
+    return render(request, 'productos/actualizar_producto.html',{'form':form})

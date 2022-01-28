@@ -13,8 +13,8 @@ def generate_request_post(url, json_parametro):
     if response.status_code == 200:
         return response.json()
 
-def generate_request_put(url):
-    response = requests.put(url)
+def generate_request_put(url,json_parametros={}):
+    response = requests.put(url,json=json_parametros)
 
     if response.status_code == 200:
         return response.json()
@@ -40,6 +40,14 @@ def crear_producto_ms(json_parametro):
 
 def inhabilitar_producto_ms(params):
     response = generate_request_put(f'http://localhost:5000/productos/inhabilitar-producto/{params}')
+
+    if response:
+        return response
+
+    return ''
+
+def actualizar_producto_ms(json_parametro,id):
+    response = generate_request_put(f'http://localhost:5000/productos/actualizar-producto/{id}', json_parametro)
 
     if response:
         return response

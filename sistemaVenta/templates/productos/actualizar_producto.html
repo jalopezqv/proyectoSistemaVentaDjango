@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Productos{% endblock %}
+
+
+{% block content %}
+
+<h1>Formulario actualizar producto</h1>
+
+<br>
+
+<form method='POST'>
+    {% csrf_token %}
+
+    <div class="mb-3">
+        {{ form.nombre }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.precio }}
+    </div>
+
+    <div class="mb-3">
+        {{ form.cantidad }}
+    </div>
+
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-secondary">Actualizar</button>
+    </div>
+</form>
+
+  
+{% endblock %}

@@ -36,7 +36,7 @@
             <td>{{ producto.precio }}</td>
             <td>{{ producto.cantidad }}</td>
             <td>
-                <a class="btn btn-secondary" href="#" role="button">Modificar</a>
+                <a class="btn btn-secondary" href="{% url 'productos_app:actualiza-producto-page'   id=producto.id %}" role="button">Modificar</a>
                 <a class="btn btn-secondary" href="{% url 'productos_app:inhabilitar-producto-page' id=producto.id %}" role="button">Inhabilitar</a>
             </td>
         </tr>
